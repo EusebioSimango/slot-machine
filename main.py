@@ -16,16 +16,32 @@ symbolCount = {
 
 def getSlotMAchineSpin(rows, cols, symbols):
   allSymbols = []
-  for symbol, symbolCount in symbol.items():
+  for symbol, symbolCount in symbols.items():
     for _ in range(symbolCount):
       allSymbols.append(symbol)
-  columns = []
-  for col in range(cols):
-    cplumn = []
-    currentSybmbol = allSymbols[:] # [:] - to make sure that currentSymb will store a co[y of allSymb and not the object itself
-    for row in range(rows):
-      value = random.choice(allSymbols)
 
+  columns = []
+  for _ in range(cols):
+    column = []
+    currentSybmbol = allSymbols[:] 
+    for _ in range(rows):
+      value = random.choice(allSymbols)
+      currentSybmbol.remove(value)
+      column.append(value)
+
+    columns.append(column)
+
+  return columns
+
+def printSlotMachine(columns):
+  for row in range(len(columns[0])):
+    for i, column in enumerate(columns):
+      if i != len(columns) - 1:
+        print(column[row], end=" | ")
+      else:
+        print(column[0])
+
+  print()
 
 def deposit():
   while True:
@@ -79,5 +95,8 @@ def main():
       break
 
   print(f"You are betting ${bet} on {lines} lines. Total bet is equal to ${totalBet}.")
+
+  slot = getSlotMAchineSpin(ROWS, COLS, symbolCount)
+  printSlotMachine(slot)
 
 main()
