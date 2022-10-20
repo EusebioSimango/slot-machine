@@ -19,7 +19,12 @@ def getSlotMAchineSpin(rows, cols, symbols):
   for symbol, symbolCount in symbol.items():
     for _ in range(symbolCount):
       allSymbols.append(symbol)
-
+  columns = []
+  for col in range(cols):
+    cplumn = []
+    currentSybmbol = allSymbols[:] # [:] - to make sure that currentSymb will store a co[y of allSymb and not the object itself
+    for row in range(rows):
+      value = random.choice(allSymbols)
 
 
 def deposit():
